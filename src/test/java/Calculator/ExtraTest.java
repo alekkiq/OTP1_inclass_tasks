@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class ExtraTest extends AbstractParent {
 
@@ -35,33 +37,41 @@ public class ExtraTest extends AbstractParent {
         assertEquals(0, calculator.getResult(), "Reset failed");
     }
 
-    @Test
-    public void testSquare2() {
-        calculator.square(2);
-        assertEquals(4, calculator.getResult(), "Squaring number 2 is incorrect");
+    @ParameterizedTest
+    @CsvSource({
+        "2, 4",
+        "4, 16",
+        "5, 25"
+    })
+    @DisplayName("Test square with multiple values")
+    public void testSquare(int input, int expected) {
+        calculator.square(input);
+        assertEquals(expected, calculator.getResult(), DELTA, "Squaring number " + input + " is incorrect");
     }
 
-    @Test
-    public void testSquare4() {
-        calculator.square(4);
-        assertEquals(16, calculator.getResult(), "Squaring number 4 is incorrect");
+    @ParameterizedTest
+    @CsvSource({
+        "2, 1",     // sqrt(2) = 1.414... -> (int) = 1
+        "4, 2",     // sqrt(4) = 2
+        "9, 3",     // sqrt(9) = 3
+        "16, 4"     // sqrt(16) = 4
+    })
+    @DisplayName("Test square root with multiple values")
+    public void testSquareRoot(int input, int expected) {
+        calculator.squareRoot(input);
+        assertEquals(expected, calculator.getResult(), "Square root of " + input + " is incorrect");
     }
 
-    @Test
-    public void testSquare5() {
-        calculator.square(5);
-        assertEquals(25, calculator.getResult(), DELTA, "Squaring number 5 is incorrect");
-    }
-
-    @Test
-    public void testSquareRoot2() {
-        calculator.squareRoot(2);
-        // Add assertXXX() here, expected result should be (int) Math.sqrt(2)
-    }
-
-    @Test
-    @DisplayName("Test negative square root")
-    public void testSquareRootNegative() {
-        fail("TEST HAS NOT BEEN IMPLEMENTED YET.");
+    @ParameterizedTest
+    @CsvSource({
+        "-1",
+        "-4",
+        "-100"
+    })
+    @DisplayName("Test negative square root throws exception")
+    public void testSquareRootNegative(int input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculator.squareRoot(input);
+        }, "Square root of negative number should throw IllegalArgumentException");
     }
 }
