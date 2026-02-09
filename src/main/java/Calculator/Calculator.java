@@ -2,42 +2,42 @@ package Calculator;
 
 public class Calculator {
 
-    private int result;    // Variable for the result
+    private double result;    // Variable for the result
 
     public void reset() {  // Resets the result variable
         result = 0;
     }
 
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 
-    public void add(int n) {
+    public void add(double n) {
         result = result + n;
     }
 
-    public void subtract(int n) {
+    public void subtract(double n) {
         result = result - n;
     }
 
-    public void multiply(int n) {
+    public void multiply(double n) {
         result = result * n;
     }
 
-    public void divide(int n) {
+    public void divide(double n) {
         if (n == 0) throw new ArithmeticException("Cannot divide by zero");
 
         result = result / n;
     }
 
-    public void square(int n) {
+    public void square(double n) {
         result = n * n;
     }
 
-    public void squareRoot(int n) {
+    public void squareRoot(double n) {
         if (n < 0) throw new IllegalArgumentException("Negative numbers do not have a real square root");
 
-        result = (int) Math.sqrt(n);
+        result = (double) Math.sqrt(n);
     }
 
     public void powerOn() {
