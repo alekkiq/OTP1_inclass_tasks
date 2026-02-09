@@ -17,7 +17,7 @@ public class Calculator {
     }
 
     public void subtract(int n) {
-        result = result - 1;
+        result = result - n;
     }
 
     public void multiply(int n) {
@@ -25,7 +25,8 @@ public class Calculator {
     }
 
     public void divide(int n) {
-        // if (n == 0) throw new ArithmeticException("Cannot divide by zero");
+        if (n == 0) throw new ArithmeticException("Cannot divide by zero");
+
         result = result / n;
     }
 

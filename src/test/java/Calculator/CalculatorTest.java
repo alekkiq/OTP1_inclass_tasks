@@ -29,7 +29,7 @@ public class CalculatorTest { // The class name must end with Test
     public void testAdd() {
         calculator.add(1);
         calculator.add(2);
-        assertEquals(4, calculator.getResult(), "The sum of numbers 1 and 2 is incorrect");
+        assertEquals(3, calculator.getResult(), "The sum of numbers 1 and 2 is incorrect");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class CalculatorTest { // The class name must end with Test
     public void testDivide() {
         calculator.add(8);
         calculator.divide(2);
-        assertEquals(5, calculator.getResult(), "Division 8/2 is incorrect");
+        assertEquals(4, calculator.getResult(), "Division 8/2 is incorrect");
     }
 
     // The correct result of this test is that division by zero throws an exception,
