@@ -34,7 +34,7 @@ public class ExtraTest extends AbstractParent {
     public void testReset() {
         System.out.println("  Reset calculator.");
         calculator.reset();
-        assertEquals(0, calculator.getResult(), "Reset failed");
+        assertEquals(0, calculator.getResult(), DELTA, "Reset failed");
     }
 
     @ParameterizedTest
@@ -44,22 +44,22 @@ public class ExtraTest extends AbstractParent {
         "5, 25"
     })
     @DisplayName("Test square with multiple values")
-    public void testSquare(int input, int expected) {
+    public void testSquare(double input, double expected) {
         calculator.square(input);
         assertEquals(expected, calculator.getResult(), DELTA, "Squaring number " + input + " is incorrect");
     }
 
     @ParameterizedTest
     @CsvSource({
-        "2, 1",     // sqrt(2) = 1.414... -> (int) = 1
-        "4, 2",     // sqrt(4) = 2
-        "9, 3",     // sqrt(9) = 3
-        "16, 4"     // sqrt(16) = 4
+        "2, 1.414",
+        "4, 2",
+        "9, 3",
+        "16, 4"
     })
     @DisplayName("Test square root with multiple values")
-    public void testSquareRoot(int input, int expected) {
+    public void testSquareRoot(double input, double expected) {
         calculator.squareRoot(input);
-        assertEquals(expected, calculator.getResult(), "Square root of " + input + " is incorrect");
+        assertEquals(expected, calculator.getResult(), DELTA, "Square root of " + input + " is incorrect");
     }
 
     @ParameterizedTest
@@ -69,7 +69,7 @@ public class ExtraTest extends AbstractParent {
         "-100"
     })
     @DisplayName("Test negative square root throws exception")
-    public void testSquareRootNegative(int input) {
+    public void testSquareRootNegative(double input) {
         assertThrows(IllegalArgumentException.class, () -> {
             calculator.squareRoot(input);
         }, "Square root of negative number should throw IllegalArgumentException");
