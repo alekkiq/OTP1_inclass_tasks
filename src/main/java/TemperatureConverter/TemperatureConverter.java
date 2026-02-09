@@ -1,3 +1,5 @@
+package TemperatureConverter;
+
 public class TemperatureConverter {
     public double fahrenHeitToCelsius(double f) {
         return (f - 32) * 5 / 9;
