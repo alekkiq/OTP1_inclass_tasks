@@ -21,7 +21,7 @@ public class Calculator {
     }
 
     public void multiply(int n) {
-        // Not implemented yet
+        result = result * n;
     }
 
     public void divide(int n) {
@@ -31,11 +31,13 @@ public class Calculator {
     }
 
     public void square(int n) {
-        result = 2 * n;
+        result = n * n;
     }
 
     public void squareRoot(int n) {
-        // Not implemented yet
+        if (n < 0) throw new IllegalArgumentException("Negative numbers do not have a real square root");
+
+        result = (int) Math.sqrt(n);
     }
 
     public void powerOn() {
