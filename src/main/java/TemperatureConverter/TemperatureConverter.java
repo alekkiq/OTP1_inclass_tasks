@@ -9,6 +9,11 @@ public class TemperatureConverter {
         return (c * 9 / 5) + 32;
     }
 
+    public double kelvinToCelsius(double k) {
+        if (k < 0) throw new IllegalArgumentException("Negative kelvins are not allowed.");
+        return k - 273.15;
+    }
+
     public boolean isExtremeTemperature(double c) {
         return c < -40 || c > 50;
     }
