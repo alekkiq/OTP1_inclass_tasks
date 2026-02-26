@@ -8,9 +8,9 @@ pipeline {
 
     environment {
           PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
-          DOCKERHUB_CREDENTIALS_ID = '123'
-          DOCKERHUB_REPO = 'alekkiq/OTP1_inclass_tasks'
-          DOCKER_IMAGE_TAG = 'v1'
+          DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
+          DOCKERHUB_REPO = 'alekkiq/otp1_inclass_tasks'
+          DOCKER_IMAGE_TAG = 'latest'
       }
 
   stages {
