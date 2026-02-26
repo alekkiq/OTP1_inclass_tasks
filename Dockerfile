@@ -1,12 +1,16 @@
-FROM  maven:3.9.6-eclipse-temurin-21 AS build
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 LABEL authors="aleksput"
 
 WORKDIR /app
 
 COPY pom.xml .
+COPY src ./src
 
-COPY . /app
+RUN mvn package -DskipTests --no-transfer-progress
 
-RUN mvn package
+FROM eclipse-temurin:21-jre
+WORKDIR /app
 
-CMD ["java", "-jar", "target/TemperatureConverter.jar"]
+COPY --from=build /app/target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
